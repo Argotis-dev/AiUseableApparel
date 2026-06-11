@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+    <ThinkTreeDef>
+    <defName>Abilities_AggressiveJump</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ConditionalColonist">
+          <invert>true</invert>
+          <subNodes>
+
+            <li Class="ThinkNode_ConditionalHasAbility">
+              <ability>JetJump</ability>
+              <subNodes>
+                <!-- Jump towards enemy to beat -->
+                <li Class="ThinkNode_ConditionalDoingJob">
+                  <jobDef>AttackMelee</jobDef>
+                  <subNodes>
+                    <li Class="JobGiver_AIJumpToJobTarget">
+                      <ability>JetJump</ability>
+                    </li>
+                  </subNodes>
+                </li>
+                </subNodes>
+            </li>
+          </subNodes>
+        </li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+</Defs>  

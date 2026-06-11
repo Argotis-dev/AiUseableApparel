@@ -12,6 +12,7 @@ namespace AiUseableApparel
 
         private Apparel JumpApparelSource => AiUseableApparelUtility.GetAbilityApparelSource(ability, out Apparel apparelwithability);
 
+        private CompApparelReloadable ReloadableComp => null;
         public override float EffectiveRange
         {
             get
@@ -29,6 +30,32 @@ namespace AiUseableApparel
                 }
                 return cachedEffectiveRange;
             }
+        }
+
+        protected override bool TryCastShot()
+        {
+            if (ability.Activate(currentTarget, currentDestination))
+            {
+                return JumpUtility.DoJump(CasterPawn, currentTarget, ReloadableComp, verbProps, ability, base.CurrentTarget, JumpFlyerDef);
+            }
+            return false;
+        }
+
+        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
+        {
+            if (caster == null)
+            {
+                return false;
+            }
+            if (!CanHitTarget(target) || !JumpUtility.ValidJumpTarget(CasterPawn, caster.Map, target.Cell))
+            {
+                return false;
+            }
+            if (!ReloadableUtility.CanUseConsideringQueuedJobs(CasterPawn, JumpApparelSource))
+            {
+                return false;
+            }
+            return true;
         }
 
     }

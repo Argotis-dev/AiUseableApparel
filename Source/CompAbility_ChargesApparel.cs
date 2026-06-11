@@ -18,7 +18,6 @@ namespace AiUseableApparel
     {
         public new CompProperties_AbilityChargesApparel Props => (CompProperties_AbilityChargesApparel)props;
 
-
         private Apparel ReloadableItem => AiUseableApparelUtility.GetAbilityApparelSource(parent, out Apparel apparelwithability);
 
         private int RemainingCharges => ReloadableItem?.GetComp<CompApparelVerbOwner_Charged>()?.RemainingCharges ?? 0;

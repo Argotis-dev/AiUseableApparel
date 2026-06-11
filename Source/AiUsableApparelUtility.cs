@@ -7,6 +7,7 @@ using RimWorld;
 
 namespace AiUseableApparel.Utility
 {
+    
     public static class AiUseableApparelUtility
     {
             public static Apparel GetAbilityApparelSource(Ability ability, out Apparel apparelwithability)
